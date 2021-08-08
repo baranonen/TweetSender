@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>TweetSender</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+	<link rel="stylesheet" href="main.css">
+	<script src="main.js"></script>
+</head>
+<body onload="loaded()">
+	<div id="mainScreen" class="page">
+		<h1>TweetSender</h1>
+		<p>Send tweets with custom client names, using your own API keys.</p>
+		<button onclick="openSettings()">Edit API Keys</button>
+		<p id="keyError" style="display: none;">⚠️ No keys found. Please add them using the "Edit API Keys" button.</p>
+		<hr>
+		<input type="text" id="tweetInput" placeholder="Tweet...">
+		<button id="sendButton" onclick="sendTweet()">Send</button>
+	</div>
+	<div id="settingsScreen" class="page">
+		<h1>Settings</h1>
+		<p>Edit API keys here.</p>
+		<hr>
+			<label for="consumerKey">Consumer Key</label>
+			<input type="text" id="consumerKey" placeholder="Consumer Key">
+			<label for="consumerSecret">Consumer Secret</label>
+			<input type="text" id="consumerSecret" placeholder="Consumer Secret">
+			<label for="accessToken">Access Token</label>
+			<input type="text" id="accessToken" placeholder="Access Token">
+			<label for="accessTokenSecret">Access Token Secret</label>
+			<input type="text" id="accessTokenSecret" placeholder="Access Token Secret">
+			<br>
+			<button onclick="saveKeys()">Save Keys</button>
+			<br>
+			<button class="destructiveButton" onclick="deleteAllKeys()">Delete All Keys</button>
+			<br>
+			<button onclick="userMainPage()">Exit Without Saving</button>
+	</div>
+	<noscript>
+		<div class="page display">
+			<h1>TweetSender</h1>
+			<p>⚠️ You need to enable JavaScript to use this website.</p>
+		</div>
+	</noscript>
+</body>
+</html>
