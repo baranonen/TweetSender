@@ -54,7 +54,6 @@ function saveKeys() {
 	localStorage.setItem('consumerSecret', document.getElementById("consumerSecret").value);
 	localStorage.setItem('accessToken', document.getElementById("accessToken").value);
 	localStorage.setItem('accessTokenSecret', document.getElementById("accessTokenSecret").value);
-	localStorage.setItem('areKeysAdded', 'true');
 	keyCheck()
 	alert("Keys Saved")
 	mainPage()
@@ -63,7 +62,6 @@ function saveKeys() {
 function deleteAllKeys() {
 	if (confirm('Are you sure you want to delete all API keys?')) {
 		localStorage.clear()
-		localStorage.setItem('areKeysAdded', 'false');
 		document.getElementById("consumerKey").value = ""
 		document.getElementById("consumerSecret").value = ""
 		document.getElementById("accessToken").value = ""
