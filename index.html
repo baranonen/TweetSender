@@ -7,17 +7,18 @@
 	<title>TweetSender</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
 	<link rel="stylesheet" href="main.css">
-	<script src="main.js"></script>
+	<script src="bundle.js"></script>
 </head>
-<body onload="loaded()">
+<body onload="tweetSender.loaded()">
 	<div id="mainScreen" class="page">
 		<h1>TweetSender</h1>
 		<p>Send tweets with custom client names, using your own API keys.</p>
-		<button onclick="openSettings()">Edit API Keys</button>
+		<p>⚠️ Please note that you currently have to disable CORS in your browser. This issue will be fixed in the near future.</p>
+		<button onclick="tweetSender.openSettings()">Edit API Keys</button>
 		<p id="keyError" style="display: none;">⚠️ No keys found. Please add them using the "Edit API Keys" button.</p>
 		<hr>
-		<input type="text" id="tweetInput" placeholder="Tweet...">
-		<button id="sendButton" onclick="sendTweet()">Send</button>
+		<textarea name="tweetInput" id="tweetInput" cols="25" rows="5" placeholder="Tweet..."></textarea>
+		<button id="sendButton" onclick="tweetSender.sendTweet()">Send</button>
 	</div>
 	<div id="settingsScreen" class="page">
 		<h1>Settings</h1>
@@ -32,11 +33,11 @@
 			<label for="accessTokenSecret">Access Token Secret</label>
 			<input type="text" id="accessTokenSecret" placeholder="Access Token Secret">
 			<br>
-			<button onclick="saveKeys()">Save Keys</button>
+			<button onclick="tweetSender.saveKeys()">Save Keys</button>
 			<br>
-			<button class="destructiveButton" onclick="deleteAllKeys()">Delete All Keys</button>
+			<button class="destructiveButton" onclick="tweetSender.deleteAllKeys()">Delete All Keys</button>
 			<br>
-			<button onclick="userMainPage()">Exit Without Saving</button>
+			<button onclick="tweetSender.userMainPage()">Exit Without Saving</button>
 	</div>
 	<noscript>
 		<div class="page display">

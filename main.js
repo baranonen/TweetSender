@@ -1,9 +1,14 @@
+var Twit = require('twit')
+
+var T
+
 function loaded() {
-	keyCheck()
+    keyCheck()
 	document.getElementById("mainScreen").style.display = "block"
 }
 
 function keyCheck() {
+	console.log("a")
 	if (window.localStorage.getItem('areKeysAdded') != "true") {
 		document.getElementById("keyError").style.display = "block"
 		document.getElementById("sendButton").disabled = true
@@ -17,6 +22,15 @@ function keyCheck() {
 		document.getElementById("accessToken").value = localStorage.getItem("accessToken")
 		document.getElementById("accessTokenSecret").value = localStorage.getItem("accessTokenSecret")
 	}
+	console.log(localStorage.getItem("consumerKey"))
+	T = new Twit({
+		consumer_key:         localStorage.getItem("consumerKey"),
+		consumer_secret:      localStorage.getItem("consumerSecret"),
+		access_token:         localStorage.getItem("accessToken"),
+		access_token_secret:  localStorage.getItem("accessTokenSecret"),
+		timeout_ms:           60*1000,  // optional HTTP request timeout to apply to all requests.
+		strictSSL:            true,     // optional - requires SSL certificates to be valid.
+	  })
 }
 
 function openSettings() {
@@ -50,6 +64,7 @@ function saveKeys() {
 function deleteAllKeys() {
 	if (confirm('Are you sure you want to delete all API keys?')) {
 		localStorage.clear()
+		localStorage.setItem('areKeysAdded', 'false');
 		document.getElementById("consumerKey").value = ""
 		document.getElementById("consumerSecret").value = ""
 		document.getElementById("accessToken").value = ""
@@ -61,5 +76,17 @@ function deleteAllKeys() {
 }
 
 function sendTweet() {
-
+	T.post('statuses/update', { status: document.getElementById("tweetInput").value }, function() {
+		document.getElementById("tweetInput").value = ""
+		alert("Tweet sent!")
+	})
 }
+
+module.exports.loaded = loaded
+module.exports.keyCheck = keyCheck
+module.exports.openSettings = openSettings
+module.exports.userMainPage = userMainPage
+module.exports.mainPage = mainPage
+module.exports.saveKeys = saveKeys
+module.exports.deleteAllKeys = deleteAllKeys
+module.exports.sendTweet = sendTweet
