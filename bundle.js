@@ -9,7 +9,6 @@ function loaded() {
 }
 
 function keyCheck() {
-	console.log("a")
 	if (window.localStorage.getItem('areKeysAdded') != "true") {
 		document.getElementById("keyError").style.display = "block"
 		document.getElementById("sendButton").disabled = true
@@ -23,7 +22,6 @@ function keyCheck() {
 		document.getElementById("accessToken").value = localStorage.getItem("accessToken")
 		document.getElementById("accessTokenSecret").value = localStorage.getItem("accessTokenSecret")
 	}
-	console.log(localStorage.getItem("consumerKey"))
 	T = new Twit({
 		consumer_key:         localStorage.getItem("consumerKey"),
 		consumer_secret:      localStorage.getItem("consumerSecret"),
