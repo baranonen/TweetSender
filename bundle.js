@@ -21,9 +21,7 @@ function keyCheck() {
 			consumer_key:         localStorage.getItem("consumerKey"),
 			consumer_secret:      localStorage.getItem("consumerSecret"),
 			access_token:         localStorage.getItem("accessToken"),
-			access_token_secret:  localStorage.getItem("accessTokenSecret"),
-			timeout_ms:           60*1000,  // optional HTTP request timeout to apply to all requests.
-			strictSSL:            true,     // optional - requires SSL certificates to be valid.
+			access_token_secret:  localStorage.getItem("accessTokenSecret")
 		  })
 	} else {
 		document.getElementById("keyError").style.display = "block"
@@ -38,7 +36,16 @@ function openSettings() {
 }
 
 function userMainPage() {
-	if (confirm("If you exit this page, keys that are not saved will be deleted. Are you sure?")) {
+	if (document.getElementById("consumerKey").value != localStorage.getItem("consumerKey") || document.getElementById("consumerSecret").value != localStorage.getItem("consumerSecret") || document.getElementById("accessToken").value != localStorage.getItem("accessToken") || document.getElementById("accessTokenSecret").value != localStorage.getItem("accessTokenSecret")) {
+		if (confirm("If you exit this page, keys that are not saved will be deleted. Are you sure?")) {
+			document.getElementById("mainScreen").style.display = "block"
+			document.getElementById("settingsScreen").style.display = "none"
+			document.getElementById("consumerKey").value = localStorage.getItem("consumerKey")
+			document.getElementById("consumerSecret").value = localStorage.getItem("consumerSecret")
+			document.getElementById("accessToken").value = localStorage.getItem("accessToken")
+			document.getElementById("accessTokenSecret").value = localStorage.getItem("accessTokenSecret")
+		}
+	} else {
 		document.getElementById("mainScreen").style.display = "block"
 		document.getElementById("settingsScreen").style.display = "none"
 	}
